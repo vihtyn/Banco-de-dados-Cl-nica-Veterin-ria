@@ -127,12 +127,12 @@ INSERT INTO Certificacao (NumeroRegistro, DataObtencao, InstituicaoCertificadora
 ('REG-GO-20-005C', '2020-08-01', 'Academia Brasileira de Cirurgia Vet', 'CRMV-GO 11223', 3);
 
 UPDATE Animal
-SET nome = 'Joy'
-WHERE dono = 'Renan';
+SET Nome = 'Joy'
+WHERE CPF_dono = "12345678912" ;
 
 UPDATE Certificacao
-SET data = '2025-07-25'
-WHERE registro = 'REG-DF-25-009B';
+SET DataObtencao = '2025-07-25'
+WHERE NumeroRegistro = 'REG-DF-25-009B';
 
 SELECT
     d.Nome AS "Nome do Dono",
