@@ -106,7 +106,7 @@ INSERT INTO Exotico(RFIDEX, Nota_Fiscal, animal_ID) VALUES
 INSERT INTO consulta(diagnostico, id_animal, CRMV_veterinario) VALUES 
 ("Sarna", 1, "CRMV-DF 07439"), 
 ("Gases", 2, "CRMV-DF 07439"),
-("Pneumonia bacteriana", 3, "CRMV-DF 07439");
+("Pneumonia bacteriana", 3, "CRMV-GO 11223");
 
 
 INSERT INTO tratamento(antibiotico, id_consulta, descricao_tratamento) VALUES
@@ -121,10 +121,10 @@ INSERT INTO Especialidade (IDespecialidade, nome) VALUES
 
 INSERT INTO Certificacao (NumeroRegistro, DataObtencao, InstituicaoCertificadora, CRMV_certif, ID_especialidade) VALUES
 ('REG-DF-24-001A', '2024-03-10', 'Conselho Federal de Medicina Veterinária', 'CRMV-DF 07439', 1),
-('REG-DF-25-009B', '2025-07-22', 'Instituto de Biologia da Conservação', 'CRMV-DF 07439', 3);
+('REG-DF-25-009B', '2025-07-22', 'Instituto de Biologia da Conservação', 'CRMV-DF 07439', 2);
 
 INSERT INTO Certificacao (NumeroRegistro, DataObtencao, InstituicaoCertificadora, CRMV_certif, ID_especialidade) VALUES
-('REG-GO-20-005C', '2020-08-01', 'Academia Brasileira de Cirurgia Vet', 'CRMV-GO 11223', 2);
+('REG-GO-20-005C', '2020-08-01', 'Academia Brasileira de Cirurgia Vet', 'CRMV-GO 11223', 3);
 
 
 SELECT
