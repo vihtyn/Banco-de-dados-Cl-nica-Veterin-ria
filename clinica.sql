@@ -192,6 +192,5 @@ FROM
 INNER JOIN
     Certificacao c ON v.CRMV = c.CRMV_certif
 INNER JOIN
-    Especialidade e ON c.ID_especialidade = e.IDespecialidade
-WHERE
-    v.CRMV = 'CRMV-DF 07439';
+    Especialidade e ON c.ID_especialidade = e.IDespecialidade;
+
