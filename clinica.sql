@@ -193,4 +193,3 @@ INNER JOIN
     Certificacao c ON v.CRMV = c.CRMV_certif
 INNER JOIN
     Especialidade e ON c.ID_especialidade = e.IDespecialidade;
-
