@@ -126,6 +126,13 @@ INSERT INTO Certificacao (NumeroRegistro, DataObtencao, InstituicaoCertificadora
 INSERT INTO Certificacao (NumeroRegistro, DataObtencao, InstituicaoCertificadora, CRMV_certif, ID_especialidade) VALUES
 ('REG-GO-20-005C', '2020-08-01', 'Academia Brasileira de Cirurgia Vet', 'CRMV-GO 11223', 3);
 
+UPDATE Animal
+SET nome = 'Joy'
+WHERE dono = 'Renan';
+
+UPDATE Certificacao
+SET data = '2025-07-25'
+WHERE registro = 'REG-DF-25-009B';
 
 SELECT
     d.Nome AS "Nome do Dono",
