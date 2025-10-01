@@ -26,6 +26,21 @@ CREATE TABLE veterinario(
     data_graduacao date not null
 );
 
+CREATE TABLE Especialidade(
+	IDespecialidade int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nome varchar(100)
+);
+
+CREATE TABLE Certificacao(
+	NumeroRegistro varchar(30) PRIMARY KEY NOT NULL,
+    DataObtencao date,
+    InstituicaoCertificadora varchar(50),
+    CRMV_certif varchar(13),
+    ID_especialidade int,
+    FOREIGN KEY (CRMV_certif) REFERENCES veterinario (CRMV),
+    FOREIGN KEY (ID_especialidade) REFERENCES Especialidade (IDespecialidade)
+);
+
 CREATE TABLE Exotico(
     RFIDEX varchar(11) PRIMARY KEY NOT NULL,
     Nota_Fiscal varchar(100) not null,
@@ -77,6 +92,8 @@ INSERT INTO Animal(Especie, CPF_dono, Nome, Idade, Porte) VALUES
 INSERT INTO veterinario (CRMV, nome, idade, data_graduacao) VALUES
 ("CRMV-DF 07439", "Victor Caldas", 19, "2023-09-08");
 
+INSERT INTO veterinario (CRMV, nome, idade, data_graduacao) VALUES
+('CRMV-GO 11223', 'Dra. Juliana Martins', 28, '2019-12-15');
 
 INSERT INTO Pet(RFID, animal_ID) VALUES
 ("222/333", 1), 
@@ -96,6 +113,18 @@ INSERT INTO tratamento(antibiotico, id_consulta, descricao_tratamento) VALUES
 (0, 1, 'Tratar com banhos periódicos usando um shampoo anti sarna de sua preferencia.'),
 (0, 2, 'Fazer massagens abdominais periódicas monitorando a melhora do animal ou não. Caso não haja melhora, retorne para mais exames.'),
 (1, 3, 'Tomar o antibiótico de 8 em 8 horas, aumentar a temperatura e umidade do recinto, e reduzir o estresse do animal.');
+
+INSERT INTO Especialidade (IDespecialidade, nome) VALUES
+(1, 'Clínica Geral de Pequenos Animais'),
+(2, 'Cirurgia Veterinária'),
+(3, 'Animais Silvestres e Exóticos');
+
+INSERT INTO Certificacao (NumeroRegistro, DataObtencao, InstituicaoCertificadora, CRMV_certif, ID_especialidade) VALUES
+('REG-DF-24-001A', '2024-03-10', 'Conselho Federal de Medicina Veterinária', 'CRMV-DF 07439', 1), -- Certificação de Clínico Geral
+('REG-DF-25-009B', '2025-07-22', 'Instituto de Biologia da Conservação', 'CRMV-DF 07439', 3);     -- Certificação de Animais Exóticos (para cuidar da Jibóia "Princesa"!)
+
+INSERT INTO Certificacao (NumeroRegistro, DataObtencao, InstituicaoCertificadora, CRMV_certif, ID_especialidade) VALUES
+('REG-GO-20-005C', '2020-08-01', 'Academia Brasileira de Cirurgia Vet', 'CRMV-GO 11223', 2);
 
 
 SELECT
@@ -152,3 +181,17 @@ INNER JOIN
     Exotico e ON a.ID = e.animal_ID
 INNER JOIN
     Dono d ON a.CPF_dono = d.CPF;
+
+SELECT
+    v.nome AS "Veterinário",
+    e.nome AS "Especialidade Obtida",
+    c.NumeroRegistro AS "Registro da Certificação",
+    c.DataObtencao AS "Data de Obtenção"
+FROM
+    veterinario v
+INNER JOIN
+    Certificacao c ON v.CRMV = c.CRMV_certif
+INNER JOIN
+    Especialidade e ON c.ID_especialidade = e.IDespecialidade
+WHERE
+    v.CRMV = 'CRMV-DF 07439';
